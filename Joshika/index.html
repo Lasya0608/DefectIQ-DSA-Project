@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DefectIQ | Manufacturing Quality Control</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+<h1>◈ DefectIQ</h1>
+<p>Manufacturing Quality Control · Disjoint Sparse Table Analytics</p>
+</header>
+<main>
+<section class="stats">
+<div class="card">
+<label>Production records</label>
+<strong id="totalRecords">—</strong>
+</div>
+<div class="card">
+<label>Products inspected</label>
+<strong id="totalInspected">—</strong>
+</div>
+<div class="card">
+<label>Total defects</label>
+<strong id="totalDefects">—</strong>
+</div>
+<div class="card">
+<label>Overall defect rate</label>
+<strong id="defectRate">—</strong>
+</div>
+</section>
+<section class="layout">
+<div class="panel">
+<h2>Instant Range Analysis</h2>
+<p>Choose inclusive record indices (zero-based) to query minimum and maximum defect counts.</p>
+<div class="form">
+<label>Start index<input id="left" type="number" min="0" value="0">
+</label>
+<label>End index<input id="right" type="number" min="0" value="10">
+</label>
+</div>
+<div class="actions">
+<button id="analyze">Analyze range · O(1)</button>
+</div>
+<div class="result">
+<div>
+<span>Minimum defects</span>
+<b id="minValue">—</b>
+</div>
+<div>
+<span>Maximum defects</span>
+<b id="maxValue">—</b>
+</div>
+</div>
+<div id="rangeNote" class="hint" style="margin-top:12px">
+</div>
+<div id="alert" class="alert" style="display:none">
+</div>
+</div>
+<div class="panel">
+<h2>Defect Threshold Monitoring</h2>
+<p>Set the maximum acceptable defect count per production record.</p>
+<label>Defect count threshold<input id="threshold" type="number" min="0" value="20">
+</label>
+<div class="actions">
+<button id="check">Check threshold</button>
+</div>
+<div id="thresholdSummary" class="alert" style="display:none">
+</div>
+<p class="hint">A threshold alert occurs when the maximum defect count exceeds the configured limit. Alerts are based on historical uploaded records, not live sensor feeds.</p>
+</div>
+</section>
+<div class="panel">
+<h2>Defect Trend</h2>
+<canvas id="chart" width="1050" height="260" role="img" aria-label="Defect counts across production records">
+</canvas>
+<small>Horizontal axis: record index · Vertical axis: defects per record · Highlighted region: selected query range</small>
+</div>
+<div class="panel">
+<h2>Production Inspection Records</h2>
+<div class="actions" style="margin-bottom:16px">
+<label class="secondary" style="padding:11px 16px;border-radius:9px;background:#e9f0f8;cursor:pointer;color:#19426f;font-weight:650">Upload CSV<input id="upload" type="file" accept=".csv,text/csv" hidden>
+</label>
+<button class="secondary" id="reset">Restore sample data</button>
+<button class="secondary" id="download">Download sample CSV</button>
+</div>
+<div id="message">
+</div>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>Date</th>
+<th>Shift</th>
+<th>Production line</th>
+<th>Inspected</th>
+<th>Defects</th>
+<th>Rate</th>
+</tr>
+</thead>
+<tbody id="rows">
+</tbody>
+</table>
+</div>
+</div>
+<div class="panel">
+<h2>Algorithm & Complexity</h2>
+<p class="hint">A Disjoint Sparse Table precomputes suffix aggregates on the left half and prefix aggregates on the right half of each power-of-two block. For distinct endpoints <code>L</code> and <code>R</code>, the highest differing bit selects a level where the two stored aggregates combine to answer the query in constant time. Singleton queries return the original element.</p>
+<p class="hint">
+<b>Preprocessing:</b> O(n log n) · <b>Range minimum/maximum:</b> O(1) · <b>Memory:</b> O(n log n). Uploading new records rebuilds the tables, since DST is a static data structure.</p>
+<p class="hint">
+<b>CSV format:</b> <code>date,shift,line,inspected,defects</code> with date formatted as YYYY-MM-DD. Each row represents one production shift or inspection interval.</p>
+</div>
+</main>
+<script src="js/dashboard.js">
+</script>
+</body>
+</html>

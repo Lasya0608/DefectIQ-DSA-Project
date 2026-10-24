@@ -1,0 +1,274 @@
+
+/* Joshika: dashboard layout, responsive styling and visual states */
+
+:root {
+    font-family: Inter, system-ui, Arial, sans-serif;
+    color: #18263a;
+    background: #f4f7fb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/* Header */
+header {
+    background: #10233f;
+    color: white;
+    padding: 22px max(22px, calc((100vw - 1160px) / 2));
+}
+
+header h1 {
+    margin: 0;
+    font-size: 26px;
+}
+
+header p {
+    margin: 6px 0 0;
+    color: #b7cbe4;
+}
+
+/* Main content */
+main {
+    max-width: 1160px;
+    margin: 24px auto;
+    padding: 0 18px;
+}
+
+/* Statistics cards */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.card,
+.panel {
+    background: white;
+    border: 1px solid #e2e9f1;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px #152b4410;
+}
+
+.card {
+    padding: 20px;
+}
+
+.card label {
+    display: block;
+    color: #63738a;
+    font-size: 13px;
+}
+
+.card strong {
+    display: block;
+    font-size: 30px;
+    margin-top: 9px;
+}
+
+/* Dashboard layout */
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 17px;
+}
+
+.panel {
+    padding: 22px;
+    margin-bottom: 17px;
+}
+
+/* Headings and text */
+h2 {
+    margin: 0 0 16px;
+    font-size: 19px;
+}
+
+p,
+small {
+    color: #617187;
+}
+
+/* Form controls */
+input,
+select,
+button {
+    font: inherit;
+}
+
+input[type="number"],
+select {
+    padding: 11px;
+    border: 1px solid #cbd6e3;
+    border-radius: 9px;
+    width: 100%;
+    background: white;
+}
+
+/* Buttons */
+button {
+    background: #1465cf;
+    color: white;
+    border: 0;
+    padding: 11px 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 650;
+}
+
+button.secondary {
+    background: #e9f0f8;
+    color: #19426f;
+}
+
+button:hover {
+    filter: brightness(0.95);
+}
+
+/* Form layout */
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.form label {
+    font-size: 13px;
+    color: #526781;
+}
+
+.form label input {
+    margin-top: 6px;
+}
+
+/* Action buttons */
+.actions {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+/* Results */
+.result {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.result div {
+    background: #edf5ff;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.result span {
+    display: block;
+    font-size: 12px;
+    color: #566c83;
+}
+
+.result b {
+    font-size: 27px;
+}
+
+/* Alerts and status messages */
+.alert {
+    margin-top: 12px;
+    border-radius: 9px;
+    padding: 12px;
+    background: #fff4e4;
+    color: #915a0b;
+}
+
+.good {
+    background: #e7f8ee;
+    color: #126b41;
+}
+
+#message {
+    color: #c23636;
+    min-height: 18px;
+}
+
+/* Data table */
+.tablewrap {
+    overflow: auto;
+    max-height: 400px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+th,
+td {
+    padding: 11px;
+    text-align: left;
+    border-bottom: 1px solid #e8eef4;
+    white-space: nowrap;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: #f5f8fc;
+}
+
+tr.selected {
+    background: #e8f2ff;
+}
+
+.danger {
+    color: #c23636;
+    font-weight: 700;
+}
+
+/* Charts */
+canvas {
+    width: 100%;
+    height: 240px;
+    display: block;
+}
+
+/* Helper text and inline code */
+.hint {
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+code {
+    background: #edf2f8;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+/* Responsive design: tablets and mobile */
+@media (max-width: 750px) {
+    .stats,
+    .layout {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 460px) {
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card strong {
+        font-size: 23px;
+    }
+}
