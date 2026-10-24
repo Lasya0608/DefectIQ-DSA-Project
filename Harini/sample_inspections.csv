@@ -1,0 +1,13 @@
+date,shift,line,inspected,defects
+2026-10-01,Morning,Automobile,200,8
+2026-10-01,Evening,Electronics,180,15
+2026-10-02,Morning,Automobile,210,3
+2026-10-02,Evening,Electronics,195,22
+2026-10-03,Morning,Automobile,220,11
+2026-10-03,Night,Electronics,190,6
+2026-10-04,Morning,Automobile,250,30
+2026-10-04,Evening,Electronics,205,4
+2026-10-05,Morning,Automobile,230,12
+2026-10-05,Night,Electronics,215,9
+2026-10-06,Morning,Automobile,240,17
+2026-10-06,Evening,Electronics,225,5
